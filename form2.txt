@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kerplunk Enterprise Cost Calculation Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        .form-section label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-section input[type="text"], .form-section input[type="email"], .form-section input[type="tel"], .form-section textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-section input[type="range"] {
+            width: 100%;
+        }
+        .form-section .range-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Kerplunk Enterprise Cost Calculation Form</h1>
+    <form>
+
+        <div class="form-section">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" name="companyName" required>
+        </div>
+
+        <div class="form-section">
+            <label for="contactPerson">Contact Person</label>
+            <input type="text" id="contactPerson" name="contactPerson" required>
+        </div>
+
+        <div class="form-section">
+            <label for="emailAddress">Email Address</label>
+            <input type="email" id="emailAddress" name="emailAddress" required>
+        </div>
+
+        <div class="form-section">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" required>
+        </div>
+
+        <div class="form-section">
+            <label for="companySize">Number of Employees</label>
+            <input type="range" id="companySize" name="companySize" min="1" max="15000" oninput="document.getElementById('companySizeValue').innerText = this.value;">
+            <div class="range-labels">
+                <span>1</span><span>15,000+</span>
+            </div>
+            <div>Selected Value: <span id="companySizeValue">1</span></div>
+        </div>
+
+        <div class="form-section">
+            <label for="applications">Average Number of Applications Received Annually</label>
+            <input type="range" id="applications" name="applications" min="1" max="200000" oninput="document.getElementById('applicationsValue').innerText = this.value;">
+            <div class="range-labels">
+                <span>1</span><span>200,000+</span>
+            </div>
+            <div>Selected Value: <span id="applicationsValue">1</span></div>
+        </div>
+
+        <div class="form-section">
+            <label for="jobsPosted">Average Number of Jobs Posted Annually</label>
+            <input type="range" id="jobsPosted" name="jobsPosted" min="1" max="5000" oninput="document.getElementById('jobsPostedValue').innerText = this.value;">
+            <div class="range-labels">
+                <span>1</span><span>5,000+</span>
+            </div>
+            <div>Selected Value: <span id="jobsPostedValue">1</span></div>
+        </div>
+
+        <div class="form-section">
+            <label>Deployment Preferences</label>
+            <input type="radio" id="entireCompany" name="deployment" value="Entire Company">
+            <label for="entireCompany">Entire Company</label><br>
+            <input type="radio" id="specificRegions" name="deployment" value="Specific Regions">
+            <label for="specificRegions">Specific Regions</label>
+            <input type="text" id="regions" name="regions" placeholder="Please specify the regions" style="display:none;">
+        </div>
+
+        <div class="form-section">
+            <label for="additionalInfo">Any additional comments or specific requirements</label>
+            <textarea id="additionalInfo" name="additionalInfo"></textarea>
+        </div>
+
+        <div class="form-section">
+            <button type="submit">Submit</button>
+        </div>
+
+    </form>
+
+    <script>
+        document.getElementById('specificRegions').addEventListener('change', function() {
+            document.getElementById('regions').style.display = 'block';
+        });
+        document.getElementById('entireCompany').addEventListener('change', function() {
+            document.getElementById('regions').style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>
